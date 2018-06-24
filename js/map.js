@@ -38,56 +38,6 @@
 		}
 	};
 
-
-
-
-
-
-
-
-/*///// Работа с сетью
-
-window.backend.load(loadHandler, errorHandler);
-
-  var loadHandler = function (listOfRentals) {
-
-     var fragment = document.createDocumentFragment();
-
-       for (var i = 0; i < listOfRentals.length; i++) {
-      fragment.appendChild(window.pin.renderPin(listOfRentals[i]));
-    }
-    mapListElement.appendChild(fragment);
-    return mapListElement;
-  };
-
-  var errorHandler = function (errorMessage) {
-    var errorElement = document.createElement('div');
-
-    errorElement.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: orange;';
-    errorElement.style.position = 'fixed';
-    errorElement.style.left = 0;
-    errorElement.style.right = 0;
-    errorElement.style.fontSize = '30px';
-
-    errorElement.textContent = errorMessage;
-    document.body.insertAdjacentElement('afterbegin', errorElement);
-
-  };*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //////////////// Drag Перетаскивание
 
 
