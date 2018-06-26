@@ -15,10 +15,10 @@
 				};
 				mapCard.querySelector('small').textContent = elem.offer.address;
 				mapCard.querySelector('h3').textContent = elem.offer.title;
-				mapCard.querySelector('.popup__price').innerHTML = elem.offer.price + '&#x20bd;/ночь';
+				mapCard.querySelector('.popup__price').innerHTML = elem.offer.price + ' ' + '&#x20bd;/ночь';
 				mapCard.querySelector('h4').textContent = getValueTypeOffer();
-				mapCard.querySelector('h4').nextSibling.textContent = elem.offer.rooms + 'для' + elem.offer.guests + 'гостей';
-				mapCard.querySelector('.popup__features').previousSibling.textContent = 'Заезд после' + elem.offer.checkin + 'выезд до' + elem.offer.checkout;
+				mapCard.querySelector('h4').nextSibling.textContent = elem.offer.rooms  + ' ' + 'для'  + ' ' + elem.offer.guests + 'гостей';
+				mapCard.querySelector('.popup__features').previousSibling.textContent = 'Заезд после' + ' ' + elem.offer.checkin + ' ' + 'выезд до' + ' ' + elem.offer.checkout;
 				var feature = mapCard.querySelector('.popup__features');
 				
 	//// Удаление всех дутей у родителя
@@ -43,7 +43,41 @@
 	mapCard.querySelector('.popup__features').nextElementSibling.textContent = elem.offer.description;
 	mapCard.querySelector('.popup__avatar').setAttribute('src', elem.author.avatar);
 
+	
+	/*var popupPictures = mapCard.querySelector('.popup__pictures');
+	var getMapPhotos = function(){		
+		for(var j = 0; j < elem.offer.photos; j++){
+			var li = document.createElement('li');
+			var photo = document.createElement('img');
+			photo.setAttribute('src', elem.offer.photos[j]);
+			photo.width = '45px';
+			photo.height = '40';
+			li.appendChild(photo); 
+			popupPictures.appendChild(li);
+		}
+		return popupPictures;
+	}
 
+	popupPictures = getMapPhotos();*/
+
+	 var mapCardPhotos = mapCard.querySelector('.popup__pictures');
+
+    var getMapCardPhotos = function () {
+      for (var j = 0; j < elem.offer.photos.length; j++) {
+      	var li = document.createElement('li');
+        var photo = document.createElement('img');
+        photo.src = elem.offer.photos[j];
+        photo.width = '45';
+        photo.height = '40';
+        photo.alt = 'Фотография жилья';
+        photo.style = 'margin: 2px';
+       	li.appendChild(photo);
+        mapCardPhotos.appendChild(li);
+      }
+      return mapCardPhotos;
+    };
+
+    mapCardPhotos = getMapCardPhotos();
 
 	var popupClose = mapCard.querySelector('.popup__close');
 	var pinsElements = document.querySelectorAll('.map__pin:not(.map__pin--main)');

@@ -110,4 +110,30 @@
 	
 	setCapacity();
 
+	var errorHandler = function (errorMessage) {
+	var errorElement = document.createElement('div');
+
+	errorElement.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: orange;';
+	errorElement.style.position = 'fixed';
+	errorElement.style.left = 0;
+	errorElement.style.right = 0;
+	errorElement.style.fontSize = '30px';
+
+	errorElement.textContent = errorMessage;
+	document.body.insertAdjacentElement('afterbegin', errorElement);
+
+};
+
+
+	var form = document.querySelector('.notice__form');
+
+	form.addEventListener('submit', function(evt){
+			evt.preventDefault();
+		window.backend.save(new FormData(form), function(){
+			form.reset();
+			alert('Форма отправлена успешно!');
+		}, errorHandler);
+	
+	});
+
 })();
