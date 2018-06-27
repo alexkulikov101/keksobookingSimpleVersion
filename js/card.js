@@ -21,86 +21,66 @@
 				mapCard.querySelector('.popup__features').previousSibling.textContent = 'Заезд после' + ' ' + elem.offer.checkin + ' ' + 'выезд до' + ' ' + elem.offer.checkout;
 				var feature = mapCard.querySelector('.popup__features');
 				
-	//// Удаление всех дутей у родителя
-	var removeChilds = function(index){
-		while(index.firstChild){
-			index.removeChild(index.firstChild);
-		}
-	}
-	removeChilds(feature);
+				
 
-	
-	var fragmentFeature = document.createDocumentFragment();
+				window.map.removeChilds(feature);
 
-	for(var i = 0; i < elem.offer.features.length; i++ ){
-		var featureElement = document.createElement('li');
-		featureElement.classList.add('feature', 'feature--' + elem.offer.features[i]);
-		fragmentFeature.appendChild(featureElement);
+				
+				var fragmentFeature = document.createDocumentFragment();
 
-	}
-	feature.appendChild(fragmentFeature)	
+				for(var i = 0; i < elem.offer.features.length; i++ ){
+					var featureElement = document.createElement('li');
+					featureElement.classList.add('feature', 'feature--' + elem.offer.features[i]);
+					fragmentFeature.appendChild(featureElement);
 
-	mapCard.querySelector('.popup__features').nextElementSibling.textContent = elem.offer.description;
-	mapCard.querySelector('.popup__avatar').setAttribute('src', elem.author.avatar);
+				}
+				feature.appendChild(fragmentFeature)	
 
-	
-	/*var popupPictures = mapCard.querySelector('.popup__pictures');
-	var getMapPhotos = function(){		
-		for(var j = 0; j < elem.offer.photos; j++){
-			var li = document.createElement('li');
-			var photo = document.createElement('img');
-			photo.setAttribute('src', elem.offer.photos[j]);
-			photo.width = '45px';
-			photo.height = '40';
-			li.appendChild(photo); 
-			popupPictures.appendChild(li);
-		}
-		return popupPictures;
-	}
+				mapCard.querySelector('.popup__features').nextElementSibling.textContent = elem.offer.description;
+				mapCard.querySelector('.popup__avatar').setAttribute('src', elem.author.avatar);
 
-	popupPictures = getMapPhotos();*/
 
-	 var mapCardPhotos = mapCard.querySelector('.popup__pictures');
+				var mapCardPhotos = mapCard.querySelector('.popup__pictures');
 
-    var getMapCardPhotos = function () {
-      for (var j = 0; j < elem.offer.photos.length; j++) {
-      	var li = document.createElement('li');
-        var photo = document.createElement('img');
-        photo.src = elem.offer.photos[j];
-        photo.width = '45';
-        photo.height = '40';
-        photo.alt = 'Фотография жилья';
-        photo.style = 'margin: 2px';
-       	li.appendChild(photo);
-        mapCardPhotos.appendChild(li);
-      }
-      return mapCardPhotos;
-    };
+				var getMapCardPhotos = function () {
+					for (var j = 0; j < elem.offer.photos.length; j++) {
+						var li = document.createElement('li');
+						var photo = document.createElement('img');
+						photo.src = elem.offer.photos[j];
+						photo.width = '45';
+						photo.height = '40';
+						photo.alt = 'Фотография жилья';
+						photo.style = 'margin: 2px';
+						li.appendChild(photo);
+						mapCardPhotos.appendChild(li);
+					}
+					return mapCardPhotos;
+				};
 
-    mapCardPhotos = getMapCardPhotos();
+				mapCardPhotos = getMapCardPhotos();
 
-	var popupClose = mapCard.querySelector('.popup__close');
-	var pinsElements = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-	popupClose.addEventListener('click', function(){
-		mapCard.classList.add('hidden');
+				var popupClose = mapCard.querySelector('.popup__close');
+				var pinsElements = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+				popupClose.addEventListener('click', function(){
+					mapCard.classList.add('hidden');
 
-		for(var i = 0; i< pinsElements.length; i++){
-			pinsElements[i].classList.remove('map__pin--active')
-		}
-	})
+					for(var i = 0; i< pinsElements.length; i++){
+						pinsElements[i].classList.remove('map__pin--active')
+					}
+				})
 
-	document.addEventListener('keydown', function(evt){
-		if(evt.keyCode == 27){
-			mapCard.classList.add('hidden');
-			for(var i = 0; i< pinsElements.length; i++){
-				pinsElements[i].classList.remove('map__pin--active')
+				document.addEventListener('keydown', function(evt){
+					if(evt.keyCode == 27){
+						mapCard.classList.add('hidden');
+						for(var i = 0; i< pinsElements.length; i++){
+							pinsElements[i].classList.remove('map__pin--active')
+						}
+					}
+				})
+
+				return mapCard;
+
 			}
+
 		}
-	})
-
-	return mapCard;
-
-}
-
-}
-})();
+	})();

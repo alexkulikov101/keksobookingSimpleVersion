@@ -32,12 +32,8 @@
 
 					var mapContainer = document.querySelector('.map__container');
 
-					var removeChilds = function(index){
-						while(index.firstChild){
-							index.removeChild(index.firstChild);
-						}
-					}
-					removeChilds(mapContainer);					
+					
+					window.map.removeChilds(mapContainer);					
 					mapContainer.appendChild(fragment);
 				})	
 

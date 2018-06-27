@@ -1,14 +1,17 @@
 	'use strict';
 	(function(){
 
-
+		var NUMBER_PINS = 5;
 		var map = document.querySelector('.map');	
-		var mapPinsCont = document.querySelector('.map__pins');		
+		var mapPinsCont = document.querySelector('.map__pins');	
+		var mapContainer = document.querySelector('.map__container');	
 		var mapPinMain = map.querySelector('.map__pin--main');
 		var pinsElements = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 		var mapPinMap = document.querySelector('.map__pin--main');
 		map.classList.add('map--faded');
 		var form = document.querySelector('.notice__form');
+
+		
 
 		
 
@@ -24,22 +27,41 @@
 				form.classList.remove('notice__form--disabled');
 
 				window.form.disableFieldset(false);
-			}
-		};
+			},
+
+			//// Удаление всех детей у родителя
+			removeChilds: function(parent){
+				while(parent.firstChild){
+					parent.removeChild(parent.firstChild);
+				}
+
+			},
+			createPin: function(arr){
+				/// Удаляем пины
+				window.map.removeChilds(mapPinsCont);
+					/// Удаляем попап
+					window.map.removeChilds(mapContainer);
+
+					var arrSlice = arr.slice(0, NUMBER_PINS);
+
+					var fragment = document.createDocumentFragment();
+					for (var i  = 0; i < arrSlice.length; i++){
+						fragment.appendChild(window.pin.renderPin(arrSlice[i]));
+						mapPinsCont.appendChild(fragment);	
+					}					
+					return mapPinsCont;
+				}
+			};
+
 
 
 ///// Работа с сетью
 
 
-var loadHandler = function (listOfRentals) {
+var loadHandler = function (data) {
+	window.data(data);
+	window.map.createPin(window.data.value);
 
-	var fragment = document.createDocumentFragment();
-
-	for (var i = 0; i < listOfRentals.length; i++) {
-		fragment.appendChild(window.pin.renderPin(listOfRentals[i]));
-	}
-	mapPinsCont.appendChild(fragment);
-	return mapPinsCont;
 };
 
 var errorHandler = function (errorMessage) {
