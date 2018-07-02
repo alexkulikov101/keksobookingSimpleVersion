@@ -11,7 +11,10 @@
 		map.classList.add('map--faded');
 		var form = document.querySelector('.notice__form');
 
-		
+
+	
+
+
 
 		
 
